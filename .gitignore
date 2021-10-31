@@ -4,4 +4,5 @@ node_modules
 /server/build
 /public/build
 
+.firebase
 firebase-debug.log

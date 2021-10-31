@@ -5,6 +5,6 @@ module.exports = {
   appDirectory: "app",
   browserBuildDirectory: "public/build",
   publicPath: "/build/",
-  serverBuildDirectory: "server/build",
+  serverBuildDirectory: "functions/lib/build",
   devServerPort: 8002
 };

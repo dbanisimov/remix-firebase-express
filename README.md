@@ -1,11 +1,8 @@
-# Welcome to Remix!
-
-- [Remix Docs](https://docs.remix.run)
-- [Customer Dashboard](https://remix.run/dashboard)
+# Remix-Firebase
 
 ## Development
 
-You'll need to run two terminals (or bring in a process manager like concurrently/pm2-dev if you like):
+You'll need to run three terminals (or bring in a process manager like concurrently/pm2-dev if you like):
 
 Start the Remix development asset server
 
@@ -13,48 +10,33 @@ Start the Remix development asset server
 npm run dev
 ```
 
-In a new tab start your express app:
+In a new tab start functions TypeScript compiler:
 
 ```sh
-npm run start:dev
+npm run dev:functions
 ```
 
-This starts your app in development mode, which will purge the server require cache when Remix rebuilds assets so you don't need a process manager restarting the express server.
+In a new tab start Firebase emulators:
+
+```sh
+npm run start
+```
 
 ## Deployment
 
-First, build your app for production:
+First, build your Remix app for production:
 
 ```sh
 npm run build
 ```
 
-Then run the app in production mode:
+Second, build Cloud Functions:
 
 ```sh
-npm start
+npm run build:functions
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying express applications you should be right at home just make sure to deploy the output of `remix build`
-
-- `server/build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
+Then deploy your Cloud Functions and Hosting (this runs the functions build script as well)
 ```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
+firebase deploy --only hosting,functions:remix
 ```
